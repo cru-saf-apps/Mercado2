@@ -261,7 +261,7 @@ while t < len(df_jogs):
   aux_df = df_stats[(df_stats.Jogador == df_jogs.Jogador[t])&(df_stats['Equipe atual']==df_jogs['Equipe atual'][t])]
 
   lista_medias = []
-  for coluna in aux_df.columns.tolist()[8:]:
+  for coluna in aux_df.columns.tolist()[:-2]:
     media = aux_df[coluna].mean()
     lista_medias.append(media)
 
