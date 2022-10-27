@@ -245,7 +245,7 @@ st.write(df_jogs)
 df_stats = base_comp[base_comp.columns.tolist()[8:]].copy().subtract(lista_valores)
 v = 0
 for coluna in categorias:
-  df_stats[coluna] = (df_stats[coluna]/lista_valores[v])-1
+  df_stats[coluna] = df_stats[coluna]/lista_valores[v]
   v += 1
 
 df_stats['Jogador'] = base_comp['Jogador']
@@ -254,18 +254,18 @@ df_stats['Equipe atual'] = base_comp['Equipe atual']
 st.write(df_stats)
 
 df_final = df_jogs[['Jogador','Equipe atual']].copy()
-df_final['Soma'] = ""
+df_final['Media'] = ""
 
 t = 0
 while t < len(df_jogs):
-  aux_df = base_comp[(base_comp.Jogador == df_jogs.Jogador[t])&(base_comp['Equipe atual']==df_jogs['Equipe atual'][t])]
+  aux_df = df_stats[(df_stats.Jogador == df_jogs.Jogador[t])&(df_stats['Equipe atual']==df_jogs['Equipe atual'][t])]
 
-  somas = 0
+  lista_medias = []
   for coluna in aux_df.columns.tolist()[8:]:
-    soma = aux_df[coluna].sum()
-    somas = somas + soma
+    media = aux_df[coluna].mean()
+    lista_medias.append(media)
 
-  df_final['Soma'][t] = somas
+  df_final['Media'][t] = sum(lista_medias)/len(lista_medias)
   t += 1
 
 
