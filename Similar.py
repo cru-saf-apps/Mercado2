@@ -258,5 +258,6 @@ while t < len(df_jogs):
   media_difer = sum(lista_difers) / len(lista_difers)
   
   df_jogs['Media'][t] = media_difer
+  t += 1
 
 st.write(df_jogs)
