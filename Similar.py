@@ -260,4 +260,10 @@ while t < len(df_jogs):
   df_jogs['Media'][t] = media_difer
   t += 1
 
+df_jogs['Media'] = abs(df_jogs['Media'])
+
 st.write(df_jogs)
+
+
+df_similares = df_jogs.nsmallest(5,'Media')
+st.write(df_similares)
