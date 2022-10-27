@@ -239,8 +239,9 @@ st.pyplot(fig)
 cols_interesse = df_comp.columns.tolist()[1:]
 base_comp = base[cols_interesse].copy()
 
-base_comp = base_comp[(base_comp.Ano>=anos1[0])&(base_comp.Ano<=anos1[1])
+base_comp = base_comp[(base_comp.Ano>=anos1[0])&(base_comp.Ano<=anos1[1])]
 
+                      
 st.subheader("Filtros para comparação")
 
 ligas_comp = st.multiselect("Ligas para comparação",options=pd.unique(base_comp.Liga))
