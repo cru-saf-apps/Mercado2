@@ -253,9 +253,7 @@ st.write(base_comp)
 
 
 
-df_jogs = base_comp.drop_duplicates(subset=['Jogador','Equipe atual']).reset_index(drop=True)[['Jogador','Equipe atual']]
-
-df_jogs['Media'] = ""
+df_jogs = base_comp.drop_duplicates(subset=['Jogador','Equipe atual']).reset_index(drop=True)
 
 st.write(df_jogs)
 st.write(len(lista_valores))
@@ -270,19 +268,7 @@ while t < len(df_jogs):
       soma = np.nansum(aux_df[coluna])
     else:
       soma = np.nanmean(aux_df[coluna])
-    difer = (soma-lista_valores[v])/(np.nanmax(base_comp[coluna]) - np.nanmin(base_comp[coluna]))
-    lista_difers.append(difer)
-    v += 1
-  
-  media_difer = sum(lista_difers) / len(lista_difers)
-  
-  df_jogs['Media'][t] = media_difer
-  t += 1
-
-df_jogs.Media = df_jogs.Media.astype('float')
+    df_jogs[coluna][t] = soma
+      
 
 st.write(df_jogs)
-
-
-df_similares = df_jogs.nsmallest(6,'Media')
-st.write(df_similares)
