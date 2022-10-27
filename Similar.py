@@ -190,7 +190,7 @@ class ComplexRadar():
 
 categorias = lista_vars[9:]
 
-fig = plt.figure(figsize = (8,8))
+'''fig = plt.figure(figsize = (8,8))
 
 radar = ComplexRadar(fig,categorias,lista_ranges)
 
@@ -204,7 +204,7 @@ elif df_comp['Pé'].tolist()[0] == 'ambos':
 else:
   pe = 'Desconhecido'
 
-altura = df_comp['Altura'].tolist()[0]
+altura = df_comp['Altura'].tolist()[0]'''
 
 aux_df = df_comp.loc[:, df_comp.columns != 'Jogador']
 aux_df = aux_df.loc[:, aux_df.columns != 'Equipe atual']
@@ -226,14 +226,14 @@ for coluna in aux_df.columns:
   else:
     lista_valores.append(aux_df[coluna].mean())
 
-legenda = nome + " (" + str(altura) +"cm; Pé: "+pe+")"
+'''legenda = nome + " (" + str(altura) +"cm; Pé: "+pe+")"
 radar.plot(lista_valores,label=legenda)
 
 
 fig.legend()
 
 st.subheader("Radar de Desempenho\n"+nome_busca1 + " ("+str(anos1[0])+" a "+str(anos1[1]) + ")")
-st.pyplot(fig)
+st.pyplot(fig)'''
 
 
 cols_interesse = df_comp.columns.tolist()[1:]
