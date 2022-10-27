@@ -245,7 +245,7 @@ base_comp = base_comp[(base_comp.Ano>=anos1[0])&(base_comp.Ano<=anos1[1])]
                       
 st.subheader("Filtros para comparação")
 
-ligas_comp = st.multiselect("Ligas para comparação",options=pd.unique(base_comp.Liga))
+ligas_comp = st.select("Ligas para comparação",options=pd.unique(base_comp.Liga))
 
 base_comp = base_comp[base_comp.Liga.isin(ligas_comp)]
 
@@ -269,5 +269,19 @@ while t < len(df_jogs):
       soma = np.nanmean(aux_df[coluna])
     df_jogs[coluna][t] = soma
   t += 1
+
+st.write(df_jogs)
+
+v = 0
+for coluna in df_jogs.columns.tolist()[-len(lista_valores):]:
+  range = np.nanmax(df_comp[coluna]) - np.nanmin(df_comp[coluna])
+  t = 0
+  while t < len(df_jogs):
+    if df_jogs[coluna][t] not in range(lista_valores[v]-range*0.1,lista_valores[v]+range*0.1):
+      df_jogs = df_jogs.drop([t,0])
+      t += 1
+    else:
+      t += 1
+  v += 1
 
 st.write(df_jogs)
