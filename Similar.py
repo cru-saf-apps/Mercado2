@@ -280,7 +280,7 @@ while t < len(df_jogs):
 
 t = 0
 while t < len(df_jogs):
-  df_jogs.Media[t] = (df_jogs.Media[t]-np.nanmin(df_jogos.Media))/(np.nanmax(df_jogos.Media)-np.nanmin(df_jogos.Media))
+  df_jogs.Media[t] = (df_jogs.Media[t]-np.nanmin(df_jogs.Media))/(np.nanmax(df_jogs.Media)-np.nanmin(df_jogs.Media))
   t += 1
 df_jogs.Media = df_jogs.Media.astype('float')
 
