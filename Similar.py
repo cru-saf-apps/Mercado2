@@ -273,6 +273,7 @@ while t < len(df_jogs):
   t += 1
 
 st.write(df_jogs)
+st.write(len(df_jogs))
 
 v = 0
 for coluna in df_jogs.columns.tolist()[-len(lista_valores):]:
@@ -290,3 +291,4 @@ for coluna in df_jogs.columns.tolist()[-len(lista_valores):]:
   v += 1
 
 st.write(df_jogs)
+st.write(len(df_jogs))
