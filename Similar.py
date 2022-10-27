@@ -284,6 +284,7 @@ for coluna in df_jogs.columns.tolist()[-len(lista_valores):]:
     else:
       t += 1
       df_jogs = df_jogs.reset_index(drop=True)
+    st.write(t)
   v += 1
 
 st.write(df_jogs)
