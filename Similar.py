@@ -267,4 +267,4 @@ st.write(df_jogs)
 
 
 df_similares = df_jogs.nsmallest(6,'Media')
-st.write(df_similares)
+st.write(df_similares[1:])
