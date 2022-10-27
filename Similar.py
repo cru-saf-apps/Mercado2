@@ -262,7 +262,7 @@ while t < len(df_jogs):
 
   lista_medias = []
   for coluna in aux_df.columns.tolist()[:-2]:
-    media = aux_df[coluna].mean()
+    media = np.nanmean(aux_df[coluna])
     lista_medias.append(media)
 
   df_final['Media'][t] = sum(lista_medias)/len(lista_medias)
