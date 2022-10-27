@@ -261,9 +261,10 @@ while t < len(df_jogs):
   t += 1
 
 df_jogs['Media'] = abs(df_jogs['Media'])
+df_jogs.Media = df_jogs.Media.astype('float')
 
 st.write(df_jogs)
 
 
-df_similares = df_jogs['Media'].sort_values(ascending=True).head(6)[['Jogador','Equipe atual','Media']][1:]
+df_similares = df_jogs.nsmallest(6,'Media')
 st.write(df_similares)
