@@ -102,7 +102,7 @@ st.write(df)
 
 st.subheader("Variáveis para comparação")
 vars = st.multiselect(label = 'Selecione as variáveis desejadas',options=df.columns[9:])
-lista_vars = ['ID','Jogador','Pé','Altura','Equipe atual','Equipe no ano','Liga','Posição','Idade']
+lista_vars = ['ID','Jogador','Pé','Altura','Equipe atual','Equipe no ano','Liga','Ano','Posição','Idade']
 for var in vars:
   lista_vars.append(str(var))
 
@@ -188,7 +188,7 @@ class ComplexRadar():
         sdata = _scale_data(data, self.ranges)
         self.ax.fill(self.angle, np.r_[sdata, sdata[0]], *args, **kw)
 
-categorias = lista_vars[9:]
+categorias = lista_vars[10:]
 
 '''fig = plt.figure(figsize = (8,8))
 
@@ -215,6 +215,7 @@ aux_df = aux_df.loc[:, aux_df.columns != 'ID']
 aux_df = aux_df.loc[:, aux_df.columns != 'Liga']
 aux_df = aux_df.loc[:, aux_df.columns != 'Pé']
 aux_df = aux_df.loc[:, aux_df.columns != 'Altura']
+aux_df = aux_df.loc[:, aux_df.columns != 'Ano']
 
 aux_df = aux_df.reset_index(drop=True)
 
