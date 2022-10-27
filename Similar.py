@@ -245,10 +245,11 @@ base_comp = base_comp[(base_comp.Ano>=anos1[0])&(base_comp.Ano<=anos1[1])]
                       
 st.subheader("Filtros para comparação")
 
-ligas_comp = list(st.selectbox("Liga para comparação",options=pd.unique(base_comp.Liga)))
+ligas_comp = st.selectbox("Liga para comparação",options=pd.unique(base_comp.Liga))
 
+lista_ligas_comp = [ligas_comp]
 
-base_comp = base_comp[base_comp.Liga.isin(ligas_comp)]
+base_comp = base_comp[base_comp.Liga.isin(lista_ligas_comp)]
 
 st.write(base_comp)
 
