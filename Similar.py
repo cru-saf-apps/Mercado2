@@ -121,11 +121,13 @@ for coluna in df_comp.columns[9:]:
 
   lista_ranges.append((0.85*np.nanmin(df_comp[coluna]),top*1.15))
 
+@st.cache
 def _invert(x, limits):
     """inverts a value x on a scale from
     limits[0] to limits[1]"""
     return limits[1] - (x - limits[0])
-
+  
+@st.cache  
 def _scale_data(data, ranges):
     """scales data[1:] to ranges[0],
     inverts if the scale is reversed"""
@@ -145,6 +147,7 @@ def _scale_data(data, ranges):
                      * (x2 - x1) + x1)
     return sdata
 
+@st.cache  
 class ComplexRadar():
     def __init__(self, fig, variables, ranges,
                  n_ordinate_levels=6):
@@ -235,6 +238,14 @@ st.pyplot(fig)
 
 cols_interesse = df_comp.columns.tolist()[1:]
 base_comp = base[cols_interesse].copy()
+
+base_comp = base_comp[(base_comp.Ano>=anos1[0])&(base_comp.Ano<=anos1[1])
+
+st.subheader("Filtros para comparação")
+
+ligas_comp = st.multiselect("Ligas para comparação",options=pd.unique(base_comp.Liga))
+
+base_comp = base_comp[base_comp.Liga.isin(ligas_comp)]
 
 st.write(base_comp)
 
