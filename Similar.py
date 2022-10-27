@@ -265,5 +265,5 @@ df_jogs['Media'] = abs(df_jogs['Media'])
 st.write(df_jogs)
 
 
-df_similares = df_jogs.nsmallest(5,'Media')
+df_similares = df_jogs['Media'].sort_values(ascending=True).head(6)[1:]
 st.write(df_similares)
