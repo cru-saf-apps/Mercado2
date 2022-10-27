@@ -281,7 +281,7 @@ for coluna in df_jogs.columns.tolist()[-len(lista_valores):]:
   t = 0
   while t < len(df_jogs):
     if (lista_valores[v]-ampli) < df_jogs[coluna][t] < (lista_valores[v]+ampli):
-      df_jogs = df_jogs.drop(t,axis=0)
+      df_jogs = df_jogs.drop(t,axis=0).reset_index(drop=True)
     else:
       t += 1
   df_jogs = df_jogs.reset_index(drop=True)
