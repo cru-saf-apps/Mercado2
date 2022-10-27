@@ -280,6 +280,8 @@ for coluna in df_jogs.columns.tolist()[-len(lista_valores):]:
   ampli = (np.nanmax(df_comp[coluna]) - np.nanmin(df_comp[coluna]))*0.1
   t = 0
   while t < len(df_jogs):
+    if pd.isnull(df_jogs[coluna][t]):
+      df_jogs = df_jogs.drop(t,axis=0).reset_index(drop=True)
     if (lista_valores[v]-ampli) < df_jogs[coluna][t] < (lista_valores[v]+ampli):
       df_jogs = df_jogs.drop(t,axis=0).reset_index(drop=True)
     else:
