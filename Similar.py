@@ -258,7 +258,7 @@ while t < len(df_jogs):
     difer = (soma-lista_valores[v])/lista_valores[v]
     lista_difers.append(difer)
     v += 1
-  media_difer = lista_difers.mean()
+  media_difer = sum(lista_difers) / len(lista_difers)
   
   df_final['Media'][t] = media_difer
 
