@@ -270,11 +270,9 @@ while t < len(df_jogs):
       soma = np.nansum(aux_df[coluna])
     else:
       soma = np.nanmean(aux_df[coluna])
-    difer = soma-lista_valores[v]
+    difer = (soma-lista_valores[v])/(np.nanmax(base_comp[coluna]) - np.nanmin(base_comp[coluna]))
     lista_difers.append(difer)
     v += 1
-  '''antes de fazer a media das diferenças, precisa saber o percentil em que a diferença está e só depois fazer a média dos percentis,
-  para depois pegar os mais próximos de 0.5, pois 0 é quem mais se diferencia negativamente e 1 positivamente'''
   
   media_difer = sum(lista_difers) / len(lista_difers)
   
