@@ -277,7 +277,7 @@ st.write(len(df_jogs))
 
 v = 0
 for coluna in df_jogs.columns.tolist()[-len(lista_valores):]:
-  ampli = (np.nanmax(df_comp[coluna]) - np.nanmin(df_comp[coluna]))*0.1
+  ampli = (np.nanmax(df_comp[coluna]) - np.nanmin(df_comp[coluna]))*0.01
   t = 0
   while t < len(df_jogs):
     if pd.isnull(df_jogs[coluna][t]):
