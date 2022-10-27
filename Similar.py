@@ -279,10 +279,6 @@ while t < len(df_jogs):
   df_jogs['Media'][t] = media_difer
   t += 1
 
-t = 0
-while t < len(df_jogs):
-  df_jogs.Media[t] = (df_jogs.Media[t]-np.nanmin(df_jogs.Media))/(np.nanmax(df_jogs.Media)-np.nanmin(df_jogs.Media))
-  t += 1
 df_jogs.Media = df_jogs.Media.astype('float')
 
 st.write(df_jogs)
