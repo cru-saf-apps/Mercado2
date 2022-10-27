@@ -276,15 +276,17 @@ st.write(df_jogs)
 
 v = 0
 for coluna in df_jogs.columns.tolist()[-len(lista_valores):]:
-  ampli = np.nanmax(df_comp[coluna]) - np.nanmin(df_comp[coluna])
+  ampli = (np.nanmax(df_comp[coluna]) - np.nanmin(df_comp[coluna]))*0.1
   t = 0
   while t < len(df_jogs):
-    if df_jogs[coluna][t] not in (lista_valores[v]-ampli*0.1,lista_valores[v]+ampli*0.1):
-      df_jogs = df_jogs.drop([t,0]).reset_index(drop=True)
+    if (lista_valores[v]-ampli) < df_jogs[coluna][t] < (lista_valores[v]+ampli):
+      df_jogs = df_jogs.drop([t,0])
+      st.write(t)
+      t += 1
     else:
       t += 1
-      df_jogs = df_jogs.reset_index(drop=True)
-    st.write(t)
+      st.write(t)
+  df_jogs = df_jogs.reset_index(drop=True)
   v += 1
 
 st.write(df_jogs)
