@@ -270,7 +270,7 @@ while t < len(df_jogs):
       soma = np.nansum(aux_df[coluna])
     else:
       soma = np.nanmean(aux_df[coluna])
-    difer = (soma-lista_valores[v])/lista_valores[v]
+    difer = soma-lista_valores[v]
     lista_difers.append(difer)
     v += 1
   media_difer = sum(lista_difers) / len(lista_difers)
