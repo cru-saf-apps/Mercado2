@@ -257,12 +257,15 @@ df_jogs = base_comp.drop_duplicates(subset=['Jogador','Equipe atual']).reset_ind
 
 df_jogs['Media'] = ""
 
+st.write(df_jogs)
+st.write(len(lista_valores))
+
 t = 0
 while t < len(df_jogs):
   aux_df = base_comp[(base_comp.Jogador == df_jogs.Jogador[t])&(base_comp['Equipe atual']==df_jogs['Equipe atual'][t])]
   lista_difers = []
   v=0
-  for coluna in aux_df.columns.tolist()[10:]:
+  for coluna in aux_df.columns.tolist()[9:]:
     if coluna in vars_abs:
       soma = np.nansum(aux_df[coluna])
     else:
