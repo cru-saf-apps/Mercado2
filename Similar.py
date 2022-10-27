@@ -240,14 +240,11 @@ st.write(base_comp)
 
 df_jogs = base_comp.drop_duplicates(subset=['Jogador','Equipe atual']).reset_index(drop=True)[['Jogador','Equipe atual']]
 
-st.write(df_jogs)
-
-df_final = df_jogs[['Jogador','Equipe atual']].copy()
-df_final['Media'] = ""
+df_jogs['Media'] = ""
 
 t = 0
 while t < len(df_jogs):
-  aux_df = base_comp[(base_comp.Jogador == df_final.Jogador[t])&(base_comp['Equipe atual']==df_final['Equipe atual'][t])]
+  aux_df = base_comp[(base_comp.Jogador == df_jogs.Jogador[t])&(base_comp['Equipe atual']==df_jogs['Equipe atual'][t])]
   lista_difers = []
   v=0
   for coluna in aux_df.columns.tolist()[8:]:
@@ -260,6 +257,6 @@ while t < len(df_jogs):
     v += 1
   media_difer = sum(lista_difers) / len(lista_difers)
   
-  df_final['Media'][t] = media_difer
+  df_jogs['Media'][t] = media_difer
 
-st.write(df_final)
+st.write(df_jogs)
