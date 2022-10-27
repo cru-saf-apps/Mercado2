@@ -238,35 +238,28 @@ base_comp = base[cols_interesse].copy()
 
 st.write(base_comp)
 
-df_jogs = base_comp.drop_duplicates(subset=['Jogador','Equipe atual']).reset_index(drop=True)
+df_jogs = base_comp.drop_duplicates(subset=['Jogador','Equipe atual']).reset_index(drop=True)[['Jogador','Equipe atual']]
 
 st.write(df_jogs)
-
-df_stats = base_comp[base_comp.columns.tolist()[8:]].copy().subtract(lista_valores)
-v = 0
-for coluna in categorias:
-  df_stats[coluna] = abs(df_stats[coluna]/lista_valores[v])
-  v += 1
-
-df_stats['Jogador'] = base_comp['Jogador']
-df_stats['Equipe atual'] = base_comp['Equipe atual']
-
-st.write(df_stats)
 
 df_final = df_jogs[['Jogador','Equipe atual']].copy()
 df_final['Media'] = ""
 
 t = 0
 while t < len(df_jogs):
-  aux_df = df_stats[(df_stats.Jogador == df_jogs.Jogador[t])&(df_stats['Equipe atual']==df_jogs['Equipe atual'][t])]
-
-  lista_medias = []
-  for coluna in aux_df.columns.tolist()[:-2]:
-    media = np.nanmean(aux_df[coluna])
-    lista_medias.append(media)
-
-  df_final['Media'][t] = sum(lista_medias)/len(lista_medias)
-  t += 1
-
+  aux_df = base_comp[(base_comp.Jogador == df_final.Jogador[t])&(base_comp['Equipe atual']==df_final['Equipe atual'][t])]
+  lista_difers = []
+  v=0
+  for coluna in aux_df.columns.tolist()[8:]:
+    if coluna in vars_abs:
+      soma = np.nansum(aux_df[coluna])
+    else:
+      soma = np.nanmean(aux_df[coluna])
+    difer = (soma-lista_valores[v])/lista_valores[v]
+    lista_difers.append(difer)
+    v += 1
+  media_difer = lista_difers.mean()
+  
+  df_final['Media'][t] = media_difer
 
 st.write(df_final)
