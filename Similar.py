@@ -261,16 +261,17 @@ st.write(df_jogs)
 st.write(len(lista_valores))
 
 t = 0
+
 while t < len(df_jogs):
   aux_df = base_comp[(base_comp.Jogador == df_jogs.Jogador[t])&(base_comp['Equipe atual']==df_jogs['Equipe atual'][t])]
-
+  v = 0
   for coluna in aux_df.columns.tolist()[-len(lista_valores):]:
     if coluna in vars_abs:
       soma = np.nansum(aux_df[coluna])
     else:
       soma = np.nanmean(aux_df[coluna])
     df_jogs[coluna][t] = abs((soma-lista_valores[v])/(np.nanmax(df_comp[coluna]) - np.nanmin(df_comp[coluna])))
-      
+    v += 1  
   t += 1
 
 st.write(df_jogs)
