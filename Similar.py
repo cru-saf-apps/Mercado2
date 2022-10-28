@@ -269,25 +269,8 @@ while t < len(df_jogs):
       soma = np.nansum(aux_df[coluna])
     else:
       soma = np.nanmean(aux_df[coluna])
-    df_jogs[coluna][t] = soma
+    df_jogs[coluna][t] = abs((soma-lista_valores[v])/(np.nanmax(df_comp[coluna]) - np.nanmin(df_comp[coluna]))
+      
   t += 1
 
 st.write(df_jogs)
-st.write(len(df_jogs))
-
-v = 0
-for coluna in df_jogs.columns.tolist()[-len(lista_valores):]:
-  ampli = (np.nanmax(df_comp[coluna]) - np.nanmin(df_comp[coluna]))*0.01
-  t = 0
-  while t < len(df_jogs):
-    if pd.isnull(df_jogs[coluna][t]):
-      df_jogs = df_jogs.drop(t,axis=0).reset_index(drop=True)
-    if (lista_valores[v]-ampli) < df_jogs[coluna][t] < (lista_valores[v]+ampli):
-      df_jogs = df_jogs.drop(t,axis=0).reset_index(drop=True)
-    else:
-      t += 1
-  df_jogs = df_jogs.reset_index(drop=True)
-  v += 1
-
-st.write(df_jogs)
-st.write(len(df_jogs))
