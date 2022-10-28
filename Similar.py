@@ -274,4 +274,8 @@ while t < len(df_jogs):
     v += 1  
   t += 1
 
+df_jogs = df_jogs.dropna(axis=0).reset_index(drop=True)
+
+df_jogs['Media'] = df_jogs.mean(axis=1)
+
 st.write(df_jogs)
