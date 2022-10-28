@@ -276,7 +276,7 @@ while t < len(df_jogs):
       soma = np.nansum(aux_df[coluna])
     else:
       soma = np.nanmean(aux_df[coluna])
-    df_jogs[coluna][t] = abs((soma-lista_valores[v])/denoms[coluna]))
+    df_jogs[coluna][t] = abs((soma-lista_valores[v])/denoms[coluna])
     v += 1  
   t += 1
 
