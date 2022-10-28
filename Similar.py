@@ -253,7 +253,13 @@ base_comp = base_comp[base_comp.Liga.isin(lista_ligas_comp)]
 
 st.write(base_comp)
 
+denoms = {}
 
+for coluna in base_comp.columns[-len(lista_valores):]:
+  denoms[coluna] = np.nanmax(base_comp[coluna]) - np.nanmin(base_comp[coluna])
+  
+
+                                                            
 
 df_jogs = base_comp.drop_duplicates(subset=['Jogador','Equipe atual']).reset_index(drop=True)
 
@@ -270,7 +276,7 @@ while t < len(df_jogs):
       soma = np.nansum(aux_df[coluna])
     else:
       soma = np.nanmean(aux_df[coluna])
-    df_jogs[coluna][t] = abs((soma-lista_valores[v])/(np.nanmax(base_comp[coluna]) - np.nanmin(base_comp[coluna])))
+    df_jogs[coluna][t] = abs((soma-lista_valores[v])/denoms[coluna]))
     v += 1  
   t += 1
 
@@ -280,3 +286,22 @@ df_jogs['Media'] = df_jogs[categorias].mean(axis=1)
 
 st.write(df_jogs)
 st.write(lista_valores)
+
+
+
+df_similares = df_jogs.nsmallest(15,'Media')[['Jogador','Equipe atual','Media']]
+st.write(df_similares)
+
+st.title("Comparar "+ nome_busca_1 +" com jogador similar")
+
+jog_comp = st.selectbox("Selecione o jogador para comparação",options=df_similares.Jogador)
+
+base2 = base[base.Jogador == jog_comp]
+
+df_radar = pd.concat([base1[(base1.Ano>=anos1[0])&(base1.Ano<=anos1[1])],base2[(base2.Ano>=anos1[0])&(base2.Ano<=anos1[1])]])
+
+df_radar_comp = df_radar[lista_vars].copy()
+
+
+''' continuar a partir da construção do radar plot para os jogadores selecionados'''
+
