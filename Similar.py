@@ -269,7 +269,7 @@ while t < len(df_jogs):
       soma = np.nansum(aux_df[coluna])
     else:
       soma = np.nanmean(aux_df[coluna])
-    df_jogs[coluna][t] = abs((soma-lista_valores[v])/(np.nanmax(df_comp[coluna]) - np.nanmin(df_comp[coluna]))
+    df_jogs[coluna][t] = abs((soma-lista_valores[v])/(np.nanmax(df_comp[coluna]) - np.nanmin(df_comp[coluna])))
       
   t += 1
 
