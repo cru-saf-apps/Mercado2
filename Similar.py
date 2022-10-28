@@ -279,3 +279,4 @@ df_jogs = df_jogs.dropna(axis=0).reset_index(drop=True)
 df_jogs['Media'] = df_jogs[categorias].mean(axis=1)
 
 st.write(df_jogs)
+st.write(lista_valores)
